@@ -6,8 +6,8 @@ spec:
   type: NodePort
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 6005
+      targetPort: 6005
   selector:
     app: web-httpd
 ---
@@ -30,4 +30,26 @@ spec:
         - name: web-httpd
           image: httpd:2.4.55
           ports:
-            - containerPort: 80
+            - containerPort: 6005
+
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      role: front-end
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 192.168.1.0/32
+    ports:
+    - protocol: TCP
+      port: 6005
