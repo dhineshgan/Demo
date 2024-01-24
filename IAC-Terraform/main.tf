@@ -12,7 +12,6 @@ terraform {
     storage_account_name = "iacstgaccount2"
     container_name       = "backend-container1"
     key                  = "terraform.tfstate" 
-    access_key           = "4ayXaD8dtKCK8Fo5MY6km+7hArbqiSo/DfU91EHfjyAWCKLQbNAqbMUbh/6DaWZXy2NZcb5gDTZ2+AStl1CbvQ=="
   }
 
 }
